@@ -1,0 +1,331 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.2/css/bootstrap.min.css" integrity="sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+ <style type="text/css">
+    nav{
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #ddd;
+      /*text-transform: uppercase;*/
+    }
+    nav ul{
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    nav li{
+      list-style-type: none;
+      margin-left: 20px;
+      font-weight: bolder;
+    }
+    nav li a{
+      font-weight: bolder;
+    }
+    nav h1{
+      font-size: 3em;
+      color: #222;
+    }
+    nav p, nav a{
+      color: #777;
+      font-weight: 300;
+    }
+    table, td, th {  
+     border: 1px solid #ddd;
+     text-align: center;
+   }
+   
+   table {
+     border-collapse: collapse;
+     width: 50%;
+    
+   }
+   /*.table-data{
+       position: relative;
+     left:50px;
+     top:50px;
+   }*/
+   th, td {
+     padding: 15px;
+   }
+   .table-responsive {
+    overflow-x: auto; /* Allow horizontal scrolling if necessary */
+}
+
+table {
+    width: 100%; /* Make the table take full width */
+    table-layout: auto; /* Let the browser decide column widths */
+}
+
+th, td {
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden; /* Hide overflowing content */
+    text-overflow: ellipsis; /* Add ellipsis (...) for overflowing text */
+}
+
+/* Optional: You can add media queries to adjust styles on smaller screens */
+@media (max-width: 768px) {
+    th, td {
+        font-size: 12px; /* Reduce font size on smaller screens */
+    }
+}
+
+#navbar {
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  transition: top 0.3s;
+}
+
+/*#navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 15px;
+  text-decoration: none;
+  font-size: 17px;
+}*/
+
+#navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+ </style>
+ <!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
+</head>
+<body>
+  <nav id="navbar">
+    <div class="site-title">
+    </div>
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search..." />
+    </div>
+    <ul>
+      <li><a href="/add">Add User</a></li>
+      <li><a href="/logout">Logout</a></li>
+    </ul>
+  </nav>
+  <h6>Hi <%= userName %></h6>
+  <h6><a href="mailto:<%= userEmail %>"><%= userEmail %></a></h6>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.2/js/bootstrap.bundle.min.js" integrity="sha512-X/YkDZyjTf4wyc2Vy16YGCPHwAY8rZJY+POgokZjQB2mhIRFJCckEGc6YyX9eNsPfn0PzThEuNs+uaomE5CO6A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!--====form section start====-->
+    <div class="table-responsive">
+    <table border="1" id="itemsTable">
+        <thead>
+        <tr>
+            <th>S.N</th>
+            <th>Gender</th>
+            <th>Title</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Street Number</th>
+            <th>Street Name</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Country</th>
+            <th>Postcode</th>
+            <th>Location Latitude</th>
+            <th>Location Longitude</th>
+            <th>Location Offset</th>
+            <th>Location Description</th>
+            <th>Login UUID</th>
+            <th>Login Username</th>
+            <th>Login Password</th>
+            <th>Login Salt</th>
+            <th>Login MD5</th>
+            <th>Login SHA1</th>
+            <th>Login SHA256</th>
+            <th>DOB</th>
+            <th>Age</th>
+            <th>Registered Date</th>
+            <th>Registered Age</th>
+            <th>ID Name</th>
+            <th>ID Value</th>
+            <th>Large Pic Link</th>
+            <th>Medium Pic Link</th>
+            <th>Thumbnail Pic Link</th>
+            <th>Nationality</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody id="productTable">
+        <%
+        if(userData.length!=0){
+        var i=1;
+        userData.forEach(function(data){
+        %>
+        <tr>
+            <td><%=i; %></td>
+            <td><%=data.gender %></td>
+            <td><%=data.title %></td>
+            <td><%=data.first %></td>
+            <td><%=data.last %></td>
+            <td><%=data.number %></td>
+            <td><%=data.name %></td>
+            <td><%=data.city %></td>
+            <td><%=data.state %></td>
+            <td><%=data.country %></td>
+            <td><%=data.postcode %></td>
+            <td><%=data.latitude %></td>
+            <td><%=data.longitude %></td>
+            <td><%=data.offset %></td>
+            <td><%=data.description %></td>
+            <td><%=data.uuid %></td>
+            <td><%=data.username %></td>
+            <td><%=data.password %></td>
+            <td><%=data.salt %></td>
+            <td><%=data.md5 %></td>
+            <td><%=data.sha1 %></td>
+            <td><%=data.sha256 %></td>
+            <td><%=data.date %></td>
+            <td><%=data.age %></td>
+            <td><%=data.rdate %></td>
+            <td><%=data.rage %></td>
+            <td><%=data.iname %></td>
+            <td><%=data.value %></td>
+            <td><%=data.large %></td>
+            <td><%=data.medium %></td>
+            <td><%=data.thumbnail %></td>
+            <td><%=data.nat %></td>
+            <td>
+            <form>
+               <input type="button" value="Update" onClick="location.href='/edit/<%= data._id %>'">
+               <input type="button" value="Delete" onClick="location.href='/delete/<%= data._id %>'">
+
+            </form></td>
+        </tr>
+        <%  i++; }) %>
+        <% } else{ %>
+            <tr>
+                <td colspan="7">No Data Found</td>
+            </tr>
+        <% } %>
+    </tbody>
+    </table>
+    <div id="pageInfo" class="my-2">Page 1 of 1</div>
+    <button id="prev-btn">Previous</button>
+    <button id="next-btn">Next</button>
+    </div>
+    <script>
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    document.getElementById("navbar").style.top = "0";
+  } else {
+    document.getElementById("navbar").style.top = "-50px";
+  }
+}
+////////////////////////////
+let currentPage = 1;
+const limit = 20;
+let searchQuery = '';
+
+const fetchProducts = async (page, query) => {
+    const response = await fetch(`http://localhost:3000/list`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ page, limit, search: query }), // Include search query
+    });
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    return await response.json();
+};
+
+const renderProducts = async (page) => {
+    const { products, total, totalPages } = await fetchProducts(page, searchQuery);
+    const tbody = document.querySelector('#productTable');
+    tbody.innerHTML = ''; // Clear existing rows
+
+    if (products.length > 0) {
+        let i = (page - 1) * limit + 1;
+        products.forEach((product) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${i}</td>
+                <td>${product.gender}</td>
+                <td>${product.title}</td>
+                <td>${product.first}</td>
+                <td>${product.last}</td>
+                <td>${product.number}</td>
+                <td>${product.name}</td>
+                <td>${product.city}</td>
+                <td>${product.state}</td>
+                <td>${product.country}</td>
+                <td>${product.postcode}</td>
+                <td>${product.latitude}</td>
+                <td>${product.longitude}</td>
+                <td>${product.offset}</td>
+                <td>${product.description}</td>
+                <td>${product.uuid}</td>
+                <td>${product.username}</td>
+                <td>${product.password}</td>
+                <td>${product.salt}</td>
+                <td>${product.md5}</td>
+                <td>${product.sha1}</td>
+                <td>${product.sha256}</td>
+                <td>${product.date}</td>
+                <td>${product.age}</td>
+                <td>${product.rdate}</td>
+                <td>${product.rage}</td>
+                <td>${product.iname}</td>
+                <td>${product.value}</td>
+                <td>${product.large}</td>
+                <td>${product.medium}</td>
+                <td>${product.thumbnail}</td>
+                <td>${product.nat}</td>
+                <td>
+                    <form>
+                        <input type="button" value="Update" onClick="location.href='/edit/${product._id}'">
+                        <input type="button" value="Delete" onClick="location.href='/delete/${product._id}'">
+                    </form>
+                </td>`;
+            tbody.appendChild(row);
+            i++;
+        });
+    } else {
+        const row = document.createElement('tr');
+        row.innerHTML = '<td colspan="30">No Data Found</td>';
+        tbody.appendChild(row);
+    }
+
+    document.getElementById('pageInfo').innerText = `Page ${page} of ${totalPages}`;
+    document.getElementById('prev-btn').disabled = page === 1;
+    document.getElementById('next-btn').disabled = page === totalPages;
+};
+
+document.getElementById('prev-btn').addEventListener('click', () => {
+    if (currentPage > 1) {
+        currentPage--;
+        renderProducts(currentPage);
+    }
+});
+
+document.getElementById('next-btn').addEventListener('click', () => {
+    currentPage++;
+    renderProducts(currentPage);
+});
+
+// Add event listener for search input
+document.getElementById('searchInput').addEventListener('input', (event) => {
+    searchQuery = event.target.value; // Update search query
+    currentPage = 1; // Reset to first page
+    renderProducts(currentPage); // Re-render with the search query
+});
+
+// Initial load
+renderProducts(currentPage);
+
+    </script>
+</body>
+</html>

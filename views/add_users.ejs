@@ -1,0 +1,173 @@
+<html lang="en">
+<head>
+  <title><%= title %></title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.2/css/bootstrap.min.css" integrity="sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    nav{
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #ddd;
+      text-transform: uppercase;
+    }
+    nav ul{
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    nav li{
+      list-style-type: none;
+      margin-left: 20px;
+      font-weight: bolder;
+    }
+    nav li a{
+      font-weight: bolder;
+    }
+    nav h1{
+      font-size: 3em;
+      color: #222;
+    }
+    nav p, nav a{
+      color: #777;
+      font-weight: 300;
+    }
+    /* create styles */
+    .create-blog form{
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    .create-blog input,
+    .create-blog textarea{
+      display: block;
+      width: 100%;
+      margin: 5px 0;
+      padding: 8px;
+    }
+    .create-blog label{
+      display: block;
+      margin-top: 14px;
+      color:rgb(47, 19, 75);
+      font-weight: 550;
+    }
+    .create-blog button{
+      margin-top: 10px;
+      background: crimson;
+      color: white;
+      padding: 6px;
+      border: 0;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition-duration: 0.5s;
+    }
+    .create-blog button:hover {
+      background-color: #09a723; /* Green */
+    }
+    .sub{
+      text-align: center;
+    }
+
+    span{
+      font-weight: bolder;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="site-title">
+    </div>
+    <ul>
+      <li><a href="/list">Home</a></li>
+      <li><a href="/logout">Logout</a></li>
+    </ul>
+  </nav>
+  <h6>Hi <%= userName %></h6>
+  <h6><a href="mailto:<%= userEmail %>"><%= userEmail %></a></h6>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.2/js/bootstrap.bundle.min.js" integrity="sha512-X/YkDZyjTf4wyc2Vy16YGCPHwAY8rZJY+POgokZjQB2mhIRFJCckEGc6YyX9eNsPfn0PzThEuNs+uaomE5CO6A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <div class="create-blog content">
+    <form action="/submit" method="POST">
+      <!--<label for="gender">Gender:</label>
+      <select name="gender" id="gender" class="gender" required>
+        <option selected disabled hidden>Select here</option>
+        <option name="gender" value="Male">Male</option>
+        <option name="gender" value="Female">Female</option>
+        <option name="gender" value="Other">Other</option>
+      </select>
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title">-->
+      <label for="first">First Name:</label>
+      <input type="text" name="first" id="first" value="<%= first || '' %>">
+      <% if(errors && errors.first) { %>
+        <span class="text-danger"><%= errors.first.msg %></span>
+      <% } %>
+      <label for="last">Last Name:</label>
+      <input type="text" name="last" id="last" value="<%= last || '' %>">
+      <% if(errors && errors.last) { %>
+        <span class="text-danger"><%= errors.last.msg %></span>
+      <% } %>
+      <!--<label for="number">Number:</label>
+      <input type="number" name="number" id="number">
+      <label for="name">Name:</label>
+      <input type="text" name="name" id="name">
+      <label for="city">City:</label>
+      <input type="text" name="city" id="city">
+      <label for="state">State:</label>
+      <input type="text" name="state" id="state">
+      <label for="country">Country:</label>
+      <input type="text" name="country" id="country">
+      <label for="postcode">Post Code:</label>
+      <input type="number" name="postcode" id="postcode">
+      <label for="latitude">Latitude:</label>
+      <input type="text" name="latitude" id="latitude">
+      <label for="longitude">Longitude:</label>
+      <input type="text" name="longitude" id="longitude">
+      <label for="offset">Offset:</label>
+      <input type="text" name="offset" id="offset">
+      <label for="description">Description:</label>
+      <input type="text" name="description" id="description">
+      <label for="uuid">UUID:</label>
+      <input type="text" name="uuid" id="uuid">
+      <label for="username">Username:</label>
+      <input type="text" name="username" id="username">-->
+      <label for="password">Password:</label>
+      <input type="password" name="password" id="password" value="<%= password || '' %>">
+      <% if(errors && errors.password) { %>
+        <span class="text-danger"><%= errors.password.msg %></span>
+      <% } %>
+      <!--<label for="salt">Salt:</label>
+      <input type="text" name="salt" id="salt">
+      <label for="md5">MD5:</label>
+      <input type="text" name="md5" id="md5">
+      <label for="sha1">SHA1:</label>
+      <input type="text" name="sha1" id="sha1">
+      <label for="sha256">SHA256:</label>
+      <input type="text" name="sha256" id="sha256">
+      <label for="date">Date:</label>
+      <input type="datetime" name="date" id="date">
+      <label for="age">Age:</label>
+      <input type="number" name="age" id="age">
+      <label for="rdate">Registered Date:</label>
+      <input type="datetime" name="rdate" id="rdate">
+      <label for="rage">Registered Age:</label>
+      <input type="number" name="rage" id="rage">
+      <label for="iname">ID Name:</label>
+      <input type="text" name="iname" id="iname">
+      <label for="value">Value:</label>
+      <input type="text" name="value" id="value">
+      <label for="large">Large Pic Link:</label>
+      <input type="text" name="large" id="large">
+      <label for="medium">Medium Pic Link:</label>
+      <input type="text" name="medium" id="medium">
+      <label for="thumbnail">Thumbnail Pic Link:</label>
+      <input type="text" name="thumbnail" id="thumbnail">
+      <label for="nationality">Nationality:</label>
+      <input type="text" name="nationality" id="nationality">-->
+     <div class="sub">
+      <button type="submit">Submit</button>
+     </div> 
+    </form>
+  </div>
+
+</body>
+</html>
